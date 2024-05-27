@@ -1,0 +1,8 @@
+.App {
+  padding: 24px;
+  height: 94vh;
+  overflow: hidden;
+  @media only screen and (max-width: 1024px) {
+    padding: 24px 12px;
+  }
+}

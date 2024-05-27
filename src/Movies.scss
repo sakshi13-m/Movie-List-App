@@ -1,0 +1,14 @@
+.list-div {
+    padding: 16px 0px;
+    overflow: auto;
+    height: 80vh;
+    .year-div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        h2 {
+            width: 100%;
+        }
+    }
+    }

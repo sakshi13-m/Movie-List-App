@@ -1,0 +1,39 @@
+.card {
+  width: 24%;
+  position: relative;
+  display: flex;
+  height: 222px;
+  opacity: 90%;
+  @media only screen and (max-width: 1024px) {
+    width: 48%;
+  }
+}
+
+.movie-img {
+  width: 100%;
+  top: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: inherit;
+  border-radius: 4px;
+}
+
+.title {
+  position: absolute;
+  bottom: 20px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+  font-size: 18px;
+}
+
+.rating {
+  position: absolute;
+  bottom: 0px;
+  left: 8px;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+  font-size: 14px;
+}

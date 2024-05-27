@@ -1,0 +1,17 @@
+.tab-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tab {
+    width: max-content;
+    background-color: #484848;
+    border-radius: 4px;
+    padding: 6px 12px;
+    color: #F5F5F5;
+}
+
+.selected-tab {
+    background-color: #F0283C;
+}

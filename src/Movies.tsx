@@ -5,15 +5,16 @@ import { getMovieList } from "./apiServices/movieList";
 
 interface props {
   movieList: Array<any>,
-  setMovieList: Function
+  setMovieList: Function,
+  genreList: Array<any>
 }
 
-export const Movies = ({ movieList, setMovieList }: props) => {
+export const Movies = ({ movieList, setMovieList, genreList }: props) => {
   const yearRef = useRef<HTMLDivElement | null>(null);
   let isLoading = false;
 
   const checkYearPresent = (year: number) => {
-    const check =  movieList.find((item) => item.year === year)
+    const check = movieList.find((item) => item.year === year)
     console.log('check', year, check)
     return check ? true : false
   }
@@ -30,12 +31,12 @@ export const Movies = ({ movieList, setMovieList }: props) => {
     return flag ? movieList[0].year : movieList.at(-1).year
   }
 
-  const fetchData = async(year: number) => {
+  const fetchData = async (year: number) => {
     isLoading = true
     const { results } = await getMovieList(year);
     setMovieList(sortFetchedList([
       ...movieList,
-      {'year': year, 'data': results}
+      { 'year': year, 'data': results }
 
     ]))
     isLoading = false
@@ -54,19 +55,15 @@ export const Movies = ({ movieList, setMovieList }: props) => {
     }
   }, [fetchData]);
 
-  // useEffect(() => {
-  //   const container = yearRef.current;
-  //   if (container) {
-  //     container.addEventListener('scroll', handleScroll);
-  //     return () => {
-  //       container.removeEventListener('scroll', handleScroll);
-  //     };
-  //   }
-  // }, [handleScroll]);
-
   useEffect(() => {
-
-  })
+    const container = yearRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      return () => {
+        container.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [handleScroll]);
 
   return (
     <div className="list-div" id={'movie-list-div'} ref={yearRef}>
@@ -74,7 +71,9 @@ export const Movies = ({ movieList, setMovieList }: props) => {
         movieList.map((item: any) => (
           <div className="year-div">
             <h2>{item.year}</h2>
-            {item.data.map((movieDetails: any) => <MovieCard item={movieDetails} />)}
+            {item.data.length > 0 ?
+              item.data.map((movieDetails: any) => <MovieCard genreList={genreList} item={movieDetails} />)
+              : <div>Unable to fetch data based on your choice</div>}
           </ div>
         ))
       }

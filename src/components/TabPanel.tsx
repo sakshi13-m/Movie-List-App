@@ -4,21 +4,24 @@ import { getGenreList } from '../apiServices/genreList';
 import { getMovieList } from '../apiServices/movieList';
 
 interface props {
+  setGenreList: Function,
   setMovieList: Function
+  genreList: Array<any>
 }
 
-export const TabPanel = ({ setMovieList }: props) => {
-  const [genreList, setGenreList] = useState([{ id: 0, name: 'All' }]);
+export const TabPanel = ({ setGenreList, genreList, setMovieList }: props) => {
   const [selectedTab, setSelectedTab] = useState<Array<number>>([0]);
 
   const fetchGenreList = async () => {
     const list = await getGenreList();
-    console.log('genre', list)
     setGenreList([...genreList, ...list.genres])
   }
 
   const handleTabClick = async (index: number) => {
     let updatedTab: Array<number>;
+    if (index === 0) {
+      updatedTab = [0]
+    }
     if (selectedTab.includes(index)) {
       updatedTab = selectedTab.filter((i) => i !== index)
     } else {
@@ -26,8 +29,8 @@ export const TabPanel = ({ setMovieList }: props) => {
       updatedTab = [...updatedTab, index]
     }
     let selectedGenre: Array<number> = [];
-    updatedTab.forEach((item) => selectedGenre.push(genreList[item].id))
-    const { results } = await getMovieList(2012,1000,selectedGenre)
+    updatedTab[0] !== 0 && updatedTab.forEach((item) => selectedGenre.push(genreList[item].id))
+    const { results } = await getMovieList(2012,100,selectedGenre)
     setSelectedTab(updatedTab.length === 0 ? [0] : updatedTab)
     setMovieList([{ 'year': 2012, 'data': results }])
   }

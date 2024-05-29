@@ -6,10 +6,10 @@ import { TabPanel } from './components/TabPanel';
 
 function App() {
   const [movieList, setMovieList] = useState<Array<Object>>([])
+  const [genreList, setGenreList] = useState([{ id: 0, name: 'All' }]);
 
   const fetchMovieList = async () => {
     const { results } = await getMovieList(2012, 1500)
-    console.log(results)
     setMovieList([{'year':2012, 'data': results}])
   }
 
@@ -20,8 +20,8 @@ function App() {
   return (
     <div className="App">
       <h2>Movies</h2>
-      <TabPanel setMovieList={setMovieList} />
-      <Movies movieList={movieList} setMovieList={setMovieList} />
+      <TabPanel setMovieList={setMovieList} genreList={genreList} setGenreList={setGenreList} />
+      <Movies movieList={movieList} setMovieList={setMovieList} genreList={genreList} />
     </div>
   );
 }

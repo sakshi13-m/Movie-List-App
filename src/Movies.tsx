@@ -15,7 +15,6 @@ export const Movies = ({ movieList, setMovieList, genreList }: props) => {
 
   const checkYearPresent = (year: number) => {
     const check = movieList.find((item) => item.year === year)
-    console.log('check', year, check)
     return check ? true : false
   }
 
@@ -27,7 +26,6 @@ export const Movies = ({ movieList, setMovieList, genreList }: props) => {
   const getYear = (flag: boolean) => {
     if (movieList.length === 1) return 2012
     sortFetchedList(movieList)
-    console.log('sorted List', movieList);
     return flag ? movieList[0].year : movieList.at(-1).year
   }
 

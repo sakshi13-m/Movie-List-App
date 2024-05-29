@@ -15,10 +15,9 @@ interface props {
 export const MovieCard = ({item, genreList}: props) => {
   const { title, poster_path: backdrop, vote_average: rating, genre_ids, overview  } = item
   const getgenreList = useCallback(() => {
-    const genre = genre_ids.forEach((item,idx, ar) => ar[idx] = genreList.filter((gen) => gen.id === item)[0]?.name)
-    console.log(genre_ids, genre)
+    genre_ids.forEach((item,idx, ar) => ar[idx] = genreList.filter((gen) => gen.id === item)[0]?.name)
     return genre_ids.join(' | ')
-  }, [item])
+  }, [genre_ids, genreList])
 
   return (
     <div className="card">

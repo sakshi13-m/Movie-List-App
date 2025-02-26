@@ -1,6 +1,6 @@
 # MovieFlix
 
-Created this application to fetch movie list from [**TMDB**](https://developer.themoviedb.org/reference/intro/getting-started) using React JS, Typescript and SCSS.
+Created this application to fetch movie list from [**TMDB**](https://developer.themoviedb.org/reference/intro/getting-started) using React JS, Typescript and SCSSpo[].
 
 Application provides user movies categorized by the release year having *2012* as default.
 
